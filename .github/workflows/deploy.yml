@@ -1,0 +1,23 @@
+name: Deploy Automatico a VPS
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployando via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            cd /var/www/html/grupoarcii.com
+            git pull origin main
+            # Ajustar permisos por si acaso
+            chown -R nginx:nginx /var/www/html/grupoarcii.com
+            # Reiniciar PHP para limpiar caché opcional
+            systemctl reload php-fpm
