@@ -1,0 +1,12 @@
+# IMPORTANTE: Ignorar configuración con claves reales
+wp-config.php
+
+# Ignorar archivos temporales, logs y backups viejos
+*.log
+.DS_Store
+/backups/
+*.zip
+*.tar.gz
+
+# Opcional: Ignorar carpeta uploads si pesa gigas (GitHub acepta max 100MB por archivo)
+# wp-content/uploads/

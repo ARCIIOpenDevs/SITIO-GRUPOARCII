@@ -1,0 +1,147 @@
+/* =============== ESTILOS PARA EL CARRUSEL DE EMAILS =============== */
+
+/* 1. El Contenedor del Carrusel (Scroll Snap) */
+.bch-carousel-wrapper {
+  max-width: 1200px; /* Ajusta al ancho de tu contenido */
+  margin: 40px auto;
+  overflow-x: auto; /* Permite el scroll horizontal */
+  -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+  scroll-snap-type: x mandatory; /* Fuerza el "anclaje" al item más cercano */
+  scrollbar-width: thin; /* Para Firefox */
+}
+
+/* 2. El "Track" que contiene todas las tarjetas */
+.bch-carousel-track {
+  display: flex;
+  flex-wrap: nowrap; /* Evita que las tarjetas salten a la línea de abajo */
+  gap: 20px;
+  padding: 20px; /* Espacio para que se vea la sombra de la tarjeta */
+}
+
+/* 3. La Tarjeta (Card) */
+.bch-email-card {
+  /* Ancho de cada tarjeta. 
+     calc(90% - 20px) = Ocupa el 90% en móviles (menos el gap)
+  */
+  flex: 0 0 calc(90% - 20px);
+  scroll-snap-align: start; /* Ancla cada tarjeta al inicio */
+
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bch-email-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* 4. Contenido de la Tarjeta */
+.bch-card-contenido {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Ocupa todo el alto disponible */
+  min-height: 250px; /* Altura mínima para alinear botones */
+}
+
+.bch-card-fecha {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0 0 8px 0;
+}
+
+.bch-card-asunto {
+  font-size: 1.25rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+  /* Limitar a 3 líneas de texto */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bch-card-descripcion {
+  font-size: 1rem;
+  color: #555;
+  margin: 0 0 24px 0;
+  line-height: 1.6;
+  flex-grow: 1; /* Empuja el botón hacia abajo */
+  /* Limitar a 2 líneas de texto */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bch-card-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #0056b3; /* Color primario (ajustar) */
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.bch-card-link:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+/* 5. Media Queries (Responsive) */
+
+/* Tablets */
+@media (min-width: 600px) {
+  .bch-email-card {
+    /* 2 tarjetas por vista (50% - gap) */
+    flex-basis: calc(50% - 20px);
+  }
+}
+
+/* Escritorios pequeños */
+@media (min-width: 960px) {
+  .bch-email-card {
+    /* 3 tarjetas por vista (33.33% - gap) */
+    flex-basis: calc(33.333% - 20px);
+  }
+}
+
+/* Escritorios grandes */
+@media (min-width: 1280px) {
+  .bch-email-card {
+    /* 4 tarjetas por vista (25% - gap) */
+    flex-basis: calc(25% - 20px);
+  }
+}
+
+/* 6. Estilos de Depuración (NUEVO) */
+.bch-debug-info {
+  background-color: #fff8f8;
+  border: 1px solid #dc3232;
+  color: #333;
+  padding: 15px 20px;
+  margin-top: 20px;
+  text-align: left;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.bch-debug-info strong {
+  color: #c00;
+}
+.bch-debug-info ul {
+  margin: 10px 0 0 20px;
+  padding: 0;
+}
+.bch-debug-info li {
+  margin-bottom: 5px;
+}

@@ -1,0 +1,65 @@
+<script id="tmpl-nf-field-integrate_google_drive" type="text/template">
+    <#
+
+    // Set default configuration
+    let shortcodeData = {
+    type: 'uploader',
+    isFormUploader: 'ninjaforms',
+    isRequired: data.required,
+    minFiles: 0,
+    nonce: window.igd_shortcode_nonce || window.igd?.nonce,
+    };
+
+    try {
+    const id = data.module_id;
+    const parsedData = igd?.shortcodes?.find(item => item.id == id)?.config;
+
+    if (parsedData) {
+    shortcodeData = _.extend({}, shortcodeData, parsedData);
+
+    shortcodeData.filters = _.omit({
+    allowExtensions: parsedData.allowExtensions,
+    allowAllExtensions: parsedData.allowAllExtensions,
+    allowExceptExtensions: parsedData.allowExceptExtensions,
+    }, _.isUndefined);
+
+    shortcodeData.notifications = _.omit({
+    uploadNotification: parsedData.notificationEmail,
+    notificationEmail: parsedData.notificationEmail,
+    skipCurrentUserNotification: parsedData.skipCurrentUserNotification,
+    }, _.isUndefined);
+    }
+    } catch (e) {
+    console.error('Failed to parse module config for Google Drive uploader field:', e);
+    }
+
+    // Destructure optional styling
+    const { width = '100%', height = '', type } = shortcodeData;
+
+    // Encode the config object
+    const encodedData = btoa(unescape(encodeURIComponent(JSON.stringify(shortcodeData))));
+
+    #>
+
+    <!-- Google Drive Upload UI container -->
+    <div class="igd igd-shortcode-wrap igd-shortcode-{{{ type }}}"
+         style="max-width: {{{ width }}}; max-height: {{{ height }}};"
+         data-shortcode-data="{{{ encodedData }}}">
+    </div>
+
+    <!-- Hidden input field to store uploaded file IDs or values -->
+    <input
+            id="nf-field-{{{ data.id }}}"
+            name="nf-field-{{{ data.id }}}"
+            aria-describedby="nf-error-{{{ data.id }}}"
+            class="{{{ data.renderClasses() }}} nf-element upload-file-list igd-hidden"
+            type="text"
+            value="{{{ data.value }}}"
+            aria-labelledby="nf-label-field-{{{ data.id }}}"
+            data-field-id="{{{ data.id }}}"
+            data-min-files="{{{ shortcodeData.minFiles }}}"
+            {{{ data.maybeRequired() }}}
+    >
+
+    <# requestAnimationFrame(initShortcode); #>
+</script>
