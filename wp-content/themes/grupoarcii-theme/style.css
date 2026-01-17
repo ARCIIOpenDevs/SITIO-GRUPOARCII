@@ -1,0 +1,465 @@
+/*
+Theme Name: Grupo ARCII Corporate Theme 2026
+Description: Dark Tech Premium theme for Grupo ARCII corporate website
+Version: 1.0
+*/
+
+/* ==========================================================================
+   VARIABLES CSS GLOBALES - GRUPO ARCII 2026
+   ========================================================================== */
+
+:root {
+    /* Paleta de Colores Corporativos */
+    --arcii-vino: #701C29;
+    --arcii-vino-light: #8B2635;
+    --arcii-vino-dark: #5A1620;
+    --arcii-dorado: #C5A059;
+    --arcii-dorado-light: #D4B16B;
+    --arcii-dorado-dark: #B1914A;
+    
+    /* Backgrounds */
+    --arcii-bg-dark: #121212;
+    --arcii-bg-darker: #0A0A0A;
+    --arcii-bg-light-dark: #1A1A1A;
+    --arcii-bg-glass: rgba(26, 26, 26, 0.8);
+    
+    /* Textos */
+    --arcii-text-primary: #FFFFFF;
+    --arcii-text-secondary: #E0E0E0;
+    --arcii-text-muted: #B0B0B0;
+    --arcii-text-accent: var(--arcii-dorado);
+    
+    /* Tipografías */
+    --font-heading: 'Montserrat', 'Poppins', sans-serif;
+    --font-body: 'Roboto', 'Open Sans', sans-serif;
+    
+    /* Espaciados */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-xxl: 4rem;
+    
+    /* Sombras */
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --shadow-strong: 0 8px 30px rgba(0, 0, 0, 0.5);
+    --shadow-gold: 0 4px 20px rgba(197, 160, 89, 0.2);
+    
+    /* Transitions */
+    --transition-base: all 0.3s ease;
+    --transition-slow: all 0.5s ease;
+    --transition-fast: all 0.2s ease;
+}
+
+/* ==========================================================================
+   RESET Y BASE STYLES
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--arcii-bg-dark);
+    color: var(--arcii-text-secondary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   TIPOGRAFÍA CORPORATIVA
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--arcii-text-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+}
+
+h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+}
+
+.text-accent {
+    color: var(--arcii-dorado);
+}
+
+.text-brand {
+    color: var(--arcii-vino);
+}
+
+/* ==========================================================================
+   HEADER CORPORATIVO
+   ========================================================================== */
+
+.arcii-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    transition: var(--transition-base);
+}
+
+.arcii-header.scrolled {
+    background: rgba(18, 18, 18, 0.98);
+    box-shadow: var(--shadow-soft);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-lg);
+    height: 80px;
+}
+
+.arcii-logo img {
+    height: 50px;
+    filter: brightness(1.1);
+    transition: var(--transition-fast);
+}
+
+.arcii-logo:hover img {
+    filter: brightness(1.3);
+}
+
+/* Navegación Principal */
+.arcii-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.arcii-nav ul {
+    display: flex;
+    list-style: none;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+.arcii-nav a {
+    color: var(--arcii-text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    transition: var(--transition-base);
+    position: relative;
+    padding: var(--space-xs) 0;
+}
+
+.arcii-nav a:hover {
+    color: var(--arcii-dorado);
+}
+
+.arcii-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--arcii-dorado);
+    transition: var(--transition-base);
+}
+
+.arcii-nav a:hover::after {
+    width: 100%;
+}
+
+/* Botón Portal Clientes */
+.portal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 12px 24px;
+    border: 2px solid var(--arcii-dorado);
+    background: transparent;
+    color: var(--arcii-dorado);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition-base);
+}
+
+.portal-btn:hover {
+    background: var(--arcii-dorado);
+    color: var(--arcii-bg-dark);
+    box-shadow: var(--shadow-gold);
+}
+
+/* ==========================================================================
+   ELEMENTOS GLOBALES REUTILIZABLES
+   ========================================================================== */
+
+.section-padding {
+    padding: var(--space-xxl) var(--space-lg);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 16px 32px;
+    background: var(--arcii-vino);
+    color: var(--arcii-text-primary);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition-base);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: var(--arcii-vino-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-strong);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 16px 32px;
+    background: transparent;
+    color: var(--arcii-dorado);
+    text-decoration: none;
+    border-radius: 12px;
+    border: 2px solid var(--arcii-dorado);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition-base);
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: var(--arcii-dorado);
+    color: var(--arcii-bg-dark);
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--arcii-bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    border-radius: 20px;
+    padding: var(--space-lg);
+    transition: var(--transition-base);
+}
+
+.glass-card:hover {
+    border-color: rgba(197, 160, 89, 0.4);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-gold);
+}
+
+/* Grid Systems */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+}
+
+/* ==========================================================================
+   FOOTER CORPORATIVO
+   ========================================================================== */
+
+.arcii-footer {
+    background: var(--arcii-bg-darker);
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+    padding: var(--space-xxl) var(--space-lg) var(--space-lg);
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+}
+
+.footer-section h4 {
+    color: var(--arcii-dorado);
+    margin-bottom: var(--space-md);
+    font-size: 1.1rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: var(--space-xs);
+}
+
+.footer-section a {
+    color: var(--arcii-text-muted);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.footer-section a:hover {
+    color: var(--arcii-dorado);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(197, 160, 89, 0.1);
+    padding-top: var(--space-lg);
+    text-align: center;
+    color: var(--arcii-text-muted);
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .header-container {
+        padding: var(--space-sm);
+    }
+    
+    .arcii-nav {
+        gap: var(--space-md);
+    }
+    
+    .section-padding {
+        padding: var(--space-xl) var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .arcii-nav ul {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .portal-btn {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+}
+
+/* ==========================================================================
+   ANIMACIONES Y EFECTOS ESPECIALES
+   ========================================================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Efectos para números contadores */
+.counter-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--arcii-dorado);
+    display: block;
+    line-height: 1;
+}
+
+.counter-label {
+    font-size: 1rem;
+    color: var(--arcii-text-secondary);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   UTILITIES
+   ========================================================================== */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--space-xs); }
+.mb-2 { margin-bottom: var(--space-sm); }
+.mb-3 { margin-bottom: var(--space-md); }
+.mb-4 { margin-bottom: var(--space-lg); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--space-xs); }
+.mt-2 { margin-top: var(--space-sm); }
+.mt-3 { margin-top: var(--space-md); }
+.mt-4 { margin-top: var(--space-lg); }
